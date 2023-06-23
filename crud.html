@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="assets/css/crud.css" />
+  <title>Eventos Cadastrados</title>
+</head>
+<body>
+
+    <button id="button-voltar"><a href="index.html">Voltar</a></button>
+
+    <div class="crud">
+      <h1>Listagem de Eventos Cadastrados</h1>
+      <button id="btnListar">Lista de Eventos</button>
+      <button id="btnPesquisar">Pesquisar evento por conteúdo</button>
+      <div id="eventos"></div>
+
+      <script src="./assets/javascript/scriptForm.js"></script>
+    </div>
+
+<div id="modalContainer" class="modal-container">
+  <div class="modal-content">
+    <h3 class="modal-title">Editar Evento</h3>
+    <form id="eventoForm">
+      <div class="form-group">
+        <label for="inputNome">Nome:</label>
+        <input type="text" id="inputNome" placeholder="Digite o nome do evento">
+      </div>
+      <div class="form-group">
+        <label for="inputDescricao">Descrição:</label>
+        <input type="text" id="inputDescricao" placeholder="Digite a descrição do evento">
+      </div>
+      <div class="form-group">
+        <label for="inputLocal">Local:</label>
+        <input type="text" id="inputLocal" placeholder="Digite o local do evento">
+      </div>
+      <div class="form-group">
+        <label for="inputLatitude">Latitude:</label>
+        <input type="text" id="inputLatitude" placeholder="Digite a latitude do evento">
+      </div>
+      <div class="form-group">
+        <label for="inputLongitude">Longitude:</label>
+        <input type="text" id="inputLongitude" placeholder="Digite a longitude do evento">
+      </div>
+      <div class="form-group">
+        <label for="inputDataInicio">Data de Início:</label>
+        <input type="text" id="inputDataInicio" placeholder="Digite a data de início do evento">
+      </div>
+      <div class="form-group">
+        <label for="inputDataTermino">Data de Término:</label>
+        <input type="text" id="inputDataTermino" placeholder="Digite a data de término do evento">
+      </div>
+    </form>
+    <div class="modal-buttons">
+      <button id="cancelarBtn">Cancelar</button>
+      <button id="salvarBtn">Salvar</button>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

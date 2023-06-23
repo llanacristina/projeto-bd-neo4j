@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #000B2D;
+    color: white;
+}
+
+.evento-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 30%;
+    margin: 5px;
+  }
+
+  .delete-button {
+    margin-right: 8px;
+    border-radius: 72px;
+    height: 30px;
+    width: 30%;
+  }
+  .update-button{
+    border-radius: 72px;
+    height: 30px;
+    width: 30%;
+  }
+button a {
+    text-decoration: none;
+    color: white;
+}
+#eventos{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 7px;
+}
+
+.crud h1{
+  text-align: center;
+}
+
+#btnListar, #btnPesquisar{
+    margin-left: 35%;
+    margin-bottom: 2%;
+    width: 20%;
+    height: 40px;
+    border-radius: 72px;
+}
+#btnListar:hover{
+  box-shadow: 0 0 20px #A9A9A9;
+}
+#btnPesquisar:hover{
+  box-shadow: 0 0 20px #A9A9A9;
+}
+#button-voltar{
+    float: right;
+    width: 10%;
+    height: 30px;
+    margin-right: 5px;
+    border-radius: 72px;
+}
+#button-voltar:hover{
+  box-shadow: 0 0 20px #A9A9A9;
+}
+
+.modal-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modal-content {
+  width: 500px;
+  padding: 20px;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-title {
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.modal-buttons button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.modal-buttons button:first-child {
+  margin-left: 0;
+}
