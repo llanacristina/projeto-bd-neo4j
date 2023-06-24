@@ -57,10 +57,9 @@ button {
     font-family: 'Montserrat', sans-serif;
 }
 
-#buttonVer {
-    /*margin-left: 5%;*/
+#buttonVer, #buttonAdm, #button-voltar, .buttonCad, .buttonCadEv{
+    margin-left: 2%;
     border-radius: 72px;
-    /*margin-top: 10%;*/
     height: 35px;
     background-color: transparent;
     border: 1px solid white;
