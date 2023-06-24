@@ -10,6 +10,7 @@ app.use('/eventos', router);
 
 const port = 3000;
 const database = require('./database/mongo.js');
+const database2 = require('./database/neo4j');
 
 app.listen(port, ()=>{
     console.log(`App running on port ${port}.`);
