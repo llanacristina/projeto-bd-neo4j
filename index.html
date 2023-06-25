@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Projeto Maps</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <script src="assets/javascript/mapa.js"></script>
-  </head>
-  <body>
-    <div id="map"></div>
 
-      <div id="container">
-        <div class="titulo">Cadastro de usuários</div>
-        <div id="form">
-        <input type="text" id="nome" placeholder="Email:">
-        <input type="password" id="senha" placeholder= "Senha:">
-        </div>
-        
-        <div class="images">
-            <img src="assets/img/undraw_welcoming_re_x0qo 1.png" alt="imagem à esquerda">
-            <button class="buttonCad" id="btn"><a>Cadastrar usuário</a></button>
+<head>
+  <title>Projeto Maps</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
 
-            <button id="buttonVer"><a href="crud.html">Eventos cadastrados</a></button>
-            <button id="buttonAdm"><a href="eventos.html">Entrar como administrador</a></button>
-            
-            <img src="assets/img/undraw_begin_chat_re_v0lw 1.png" alt="imagem à direita">
-        </div>
+<body>
+
+  <div class="container"> <!--Parte do container inteiro,criar formulario -->
+    <div class="message signup" id="loginForm">
+      <div class="btn-wrapper">
+        <button class="button" id="signup">Cadastrar</button>
+        <button class="button" id="login">Login</button>
+      </div>
     </div>
+    <div class="form form--signup"> <!--Primeira parte formulario-->
+      <div class="form--heading">Bem vindo!<br>Crie uma conta</div>
+      <form autocomplete="off">
+        <input type="text" placeholder="Nome">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Senha">
+        <button class="button">Cadastrar</button>
+      </form>
+    </div>
+    <div class="form form--login"> <!--Segunda parte formulario debaixo dos botoes (Sign up e Login)-->
+      <div class="form--heading">Olá,<br>Bem vindo de volta! </div>
+      <form autocomplete="off">
+        <input type="text" placeholder="Nome">
+        <input type="password" placeholder="Senha">
+        <button class="button">Login</button>
+      </form>
+    </div>
+    <button id="buttonVer"><a href="crud.html">Eventos cadastrados</a></button>
+    <button id="buttonAdm"><a href="eventos.html">Entrar como administrador</a></button>
+  </div>
+  <script src="./assets/javascript/login.js"></script>
 
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly"
-      async></script>
+</body>
 
-  </body>
 </html>
-
-
