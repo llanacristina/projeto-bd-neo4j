@@ -15,18 +15,6 @@ driver.verifyAuthentication().then(()=>{
 });
 
 module.exports = neo4j
- 
-/*TESTE*/
-    /*salvar();
-async function salvar(){
-    var session = driver.session();
-
-    await session.run('CREATE(:Teste{nome:$nome, idade:$idade})',{
-    nome: 'ANA', idade: 21
-  }).then(result => console.log(result)).catch(e => console.log(e));
-  session.close();
-  driver.close();
-};*/
 
 const mongoose = require('mongoose');
 
@@ -49,13 +37,15 @@ async function transferirEventosParaNeo4j() {
 
     // Crie os nós de eventos no Neo4j
     for (const evento of eventos) {
-      await session.run(
-        'CREATE (:Evento {id: $id, nome: $nome, descricao: $descricao})',
-        { id: evento._id.toString(), nome: evento.nome, descricao: evento.descricao }
-      );
-      console.log(`Evento '${evento.nome}' importado para o Neo4j`);
+      const result = await session.run('MATCH (e:Evento {id: $id}) RETURN e', {id: evento._id.toString()});
+      if(!result.records.length){
+        await session.run(
+          'CREATE (:Evento {id: $id, nome: $nome, descricao: $descricao})',
+          { id: evento._id.toString(), nome: evento.nome, descricao: evento.descricao }
+        );
+        console.log(`Evento '${evento.nome}' importado para o Neo4j`);
+      }
     }
-
     // Feche a conexão com o Neo4j
     await session.close();
     driver.close();
