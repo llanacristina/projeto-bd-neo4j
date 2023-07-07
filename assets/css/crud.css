@@ -120,3 +120,43 @@ button a {
 .modal-buttons button:first-child {
   margin-left: 0;
 }
+
+.container {
+  width: 700px;
+  height: 400px;
+  position: relative;
+  border: #ccc solid;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+form input{
+    width: 50%;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 10px;
+    margin-left: 30%;
+}
+button{
+  width: 50%;
+  height: 30px;
+  margin-left: 30%;
+  margin-top: 15px;
+  outline: 0;
+  color: #f2eee3;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  z-index: 3;
+  border-radius: 5px;
+}
+#buttonAdm{
+  margin-left: 25%;
+  width: 40%;
+}

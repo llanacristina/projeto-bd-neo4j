@@ -4,36 +4,22 @@
 <head>
   <title>Projeto Maps</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/crud.css" />
 </head>
 
 <body>
 
-  <div class="container"> <!--Parte do container inteiro,criar formulario -->
-    <div class="message signup" id="loginForm">
-      <div class="btn-wrapper">
-        <button class="button" id="signup">Cadastrar</button>
-        <button class="button" id="login">Login</button>
-      </div>
-    </div>
-    <div class="form form--signup"> <!--Primeira parte formulario-->
-      <div class="form--heading">Bem vindo!<br>Crie uma conta</div>
-      <form autocomplete="off" id="CadUsuario">
+  <div class="container">
+    <div class="titulo">Bem vindo!<br>Crie uma conta</div>
+      <form autocomplete="off" id="cadastroForm" method="post">
         <input type="text" id="nome" placeholder="Nome">
         <input type="email" id="email" placeholder="Email">
         <input type="password" id="senha" placeholder="Senha">
-        <button type="submit" class="button">Cadastrar</button>
+        <button id="submit" class="button">Cadastrar</button>
       </form>
     </div>
-    <div class="form form--login"> <!--Segunda parte formulario debaixo dos botoes (Sign up e Login)-->
-      <div class="form--heading">Olá,<br>Bem vindo de volta! </div>
-      <form autocomplete="off">
-        <input type="text" placeholder="Nome">
-        <input type="password" placeholder="Senha">
-        <button class="button">Login</button>
-      </form>
-    </div>
-    <button id="buttonVer"><a href="crud.html">Eventos cadastrados</a></button>
+    
+   <!--  <button id="buttonVer"><a href="crud.html">Eventos cadastrados</a></button> -->
     <button id="buttonAdm"><a href="eventos.html">Entrar como administrador</a></button>
   </div>
   <script src="./assets/javascript/login.js"></script>
