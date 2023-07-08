@@ -3,17 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Login</title>
-</head>
-<body>
+  </head>
+  <body>
+    <button id="buttonAdm"><a href="eventos.html">Entrar como administrador</a></button>
     <div class="container">
-    <h1>Formulário de Login</h1>
-  <form id="cadastroForm" action="/usuarios" method="POST">
-    <input type="text" name="username" placeholder="Usuário" required />
-    <input type="password" name="password" placeholder="Senha" required />
-    <button type="submit" id="btnLogin">Entrar</button>
-  </form>
+      <div class="message signup" id="login-Form">
+        <div class="btn-wrapper">
+            <button class="button" id="signup">Cadastrar</button>
+            <button class="button" id="login">Login</button>
+            </div>
+        </div>
+      <div class="form form--signup"> <!--Primeira parte formulario-->
+        <div class="form--heading">Bem vindo!<br>Crie uma conta</div>
+        <form autocomplete="off" id="cadastroForm" method="post">
+            <input type="text" id="nome" placeholder="Nome">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="senha" placeholder="Senha">
+            <button id="submit" class="button">Cadastrar</button>
+        </form>
     </div>
-  <script src="assets/javascript/login.js"></script>
+    <div class="form form--login"> <!--Segunda parte formulario debaixo dos botoes (Sign up e Login)-->
+        <div class="form--heading">Formulário Login</div>
+        <form autocomplete="off" id="loginForm" method="POST">
+            <input type="text" placeholder="Nome">
+            <input type="password" placeholder="Senha">
+            <button id="btnLogin">Login</button>
+        </form>
+    </div>
+</div>
+  <div id="eventos"></div>
+
+ 
+ <script src="assets/javascript/login.js"></script>
 </body>
 </html>

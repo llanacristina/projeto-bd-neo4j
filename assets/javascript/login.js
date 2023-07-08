@@ -1,3 +1,16 @@
+let loginButton = document.getElementById('login');
+let loginForm = document.getElementById('login-Form');
+let signupButtom = document.getElementById('signup');
+
+loginButton.addEventListener('click', () => {
+    loginForm.style.left = "-50%";
+});
+
+signupButtom.addEventListener('click', () => {
+    loginForm.style.left = "0";
+});
+
+
 document.getElementById('cadastroForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
   
@@ -33,12 +46,36 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
       console.error(error);
     }
   }
-  
-// Obtém referência ao botão de login
-const btnLogin = document.getElementById('btnLogin');
 
-// Adiciona um evento de clique ao botão
-btnLogin.addEventListener('click', () => {
-  // Redireciona para a página de eventos
-  window.location.href = '/crud.html';
-});
+  window.onload = () => {
+  const eventosDiv = document.getElementById('eventos');
+  const formLogin = document.getElementById('loginForm');
+
+  formLogin.addEventListener('submit', (event) => {
+    event.preventDefault(); // Impede o envio do formulário
+    
+    fetch('//localhost:3000/eventos')
+      .then(response => response.json())
+      .then(eventos => {
+        eventosDiv.innerHTML = '';
+
+        eventos.forEach(evento => {
+          const eventoDiv = document.createElement('div');
+          eventoDiv.classList.add('evento-container');
+
+          const idP = document.createElement('p');
+          idP.textContent = `ID: ${evento._id}`;
+          eventoDiv.appendChild(idP);
+
+          const nomeP = document.createElement('p');
+          nomeP.textContent = `Nome: ${evento.nome}`;
+          eventoDiv.appendChild(nomeP);
+          
+          eventosDiv.appendChild(eventoDiv);
+        });
+      })
+      .catch(error => {
+        console.error('Erro ao listar os eventos:', error);
+      });
+  });
+};
