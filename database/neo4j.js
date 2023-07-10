@@ -17,7 +17,7 @@ driver.verifyAuthentication().then(()=>{
 
 module.exports = neo4j
 
-const mongoose = require('mongoose');
+ const mongoose = require('mongoose');
 
 // Conexão com o MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/aula')
@@ -62,7 +62,8 @@ try {
   const driver = neo4j.driver(url, neo4j.auth.basic(user, password));
   const session = driver.session();
 
-  const usuarios = await Usuario.find(); 
+  const usuarios = await Usuario.find().exec(); 
+
   for (const usuario of usuarios) {
     const { _id, nome, email } = usuario;
 
@@ -74,8 +75,8 @@ try {
 
     const count = existeUsuario.records[0].get('count').toNumber();
     if (count > 0) {
-      console.log(`Usuário com ID ${_id.toString()} já existe no Neo4j. Ignorando...`);
-      continue; // Pule para o próximo usuário
+     /*  console.log(`Usuário com ID ${_id.toString()} já existe no Neo4j. Ignorando...`); */
+    continue; // Pule para o próximo usuário
     }
 
     const result = await session.run(
@@ -94,4 +95,105 @@ try {
 // Chame a função para iniciar a transferência dos usuários
 transferirUsuarios();
 
+async function criarRelacionamento(nomeUsuario, nomeEvento) {
+  try {
+    const driver = neo4j.driver(url, neo4j.auth.basic(user, password));
+    const session = driver.session();
 
+    // Consulta no MongoDB para encontrar o usuário pelo nome
+    const usuario = await Usuario.findOne({ nome: nomeUsuario });
+    if (!usuario) {
+      console.log('Usuário não encontrado');
+      return;
+    }
+    const usuarioIdMongo = usuario._id.toString();
+
+    // Consulta no MongoDB para encontrar o evento pelo nome
+    const evento = await Evento.findOne({ nome: nomeEvento });
+    if (!evento) {
+      console.log('Evento não encontrado');
+      return;
+    }
+    const eventoIdMongo = evento._id.toString();
+
+    // Verificar se o relacionamento já existe no Neo4j
+    const relacionamentoExistente = await session.run(
+      'MATCH (u:Usuario {id: $usuarioIdMongo})-[:PARTICIPA]->(e:Evento {id: $eventoIdMongo}) RETURN COUNT(*) AS count',
+      { usuarioIdMongo, eventoIdMongo }
+    );
+
+    const count = relacionamentoExistente.records[0].get('count').toNumber();
+    if (count > 0) {
+      console.log('Relacionamento já existe');
+      return;
+    }
+
+    // Criar relacionamento no Neo4j
+    await session.run(
+      'MATCH (u:Usuario {id: $usuarioIdMongo}), (e:Evento {id: $eventoIdMongo}) MERGE (u)-[:PARTICIPA]->(e)',
+      { usuarioIdMongo, eventoIdMongo }
+    );
+
+    console.log('Relacionamento criado com sucesso!');
+  } catch (error) {
+    console.error('Erro ao criar o relacionamento:', error);
+  } finally {
+   /*  session.close(); */
+    driver.close();
+  }
+}
+
+// Exemplo de uso da função
+const nomeUsuario = 'ana'; // Nome do usuário
+const nomeEvento = 'Lanchar'; // Nome do evento
+
+criarRelacionamento(nomeUsuario, nomeEvento);
+
+/* 
+async function criarRelacionamento(req,res) {
+  const nomeUsuario = req.body.nomeUsuario;
+  const nomeEvento = req.body.nomeEvento;
+
+  try {
+    const session = driver.session();
+
+    // Consulta no MongoDB para encontrar o usuário pelo nome
+    const usuario = await Usuario.findOne({ nome: nomeUsuario });
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+    const usuarioIdMongo = usuario._id.toString();
+
+    // Consulta no MongoDB para encontrar o evento pelo nome
+    const evento = await Evento.findOne({ nome: nomeEvento });
+    if (!evento) {
+      return res.status(404).json({ message: 'Evento não encontrado' });
+    }
+    const eventoIdMongo = evento._id.toString();
+
+    // Verificar se o relacionamento já existe no Neo4j
+    const relacionamentoExistente = await session.run(
+      'MATCH (u:Usuario {id: $usuarioIdMongo})-[:PARTICIPA]->(e:Evento {id: $eventoIdMongo}) RETURN COUNT(*) AS count',
+      { usuarioIdMongo, eventoIdMongo }
+    );
+
+    const count = relacionamentoExistente.records[0].get('count').toNumber();
+    if (count > 0) {
+      return res.status(409).json({ message: 'Relacionamento já existe' });
+    }
+
+    // Criar relacionamento no Neo4j
+    await session.run(
+      'MATCH (u:Usuario {id: $usuarioIdMongo}), (e:Evento {id: $eventoIdMongo}) MERGE (u)-[:PARTICIPA]->(e)',
+      { usuarioIdMongo, eventoIdMongo }
+    );
+
+    session.close();
+    driver.close();
+
+    return res.status(200).json({ message: 'Relacionamento criado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao criar o relacionamento:', error);
+    return res.status(500).json({ message: 'Erro ao criar o relacionamento' });
+  }
+} */

@@ -6,6 +6,7 @@ const usuarioController = require('../controllers/UsuarioController');
 //USUARIO//
 router.post('/', usuarioController.cadastrarUsuario);
 router.post('/', usuarioController.fazerLogin);
+/* router.post('/',usuarioController.criarRelacionamento); */
 
 router.get('/', usuarioController.listarUsuarios);
 router.delete('/:id', usuarioController.excluirUsuario);

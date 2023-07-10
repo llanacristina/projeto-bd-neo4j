@@ -46,36 +46,16 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
       console.error(error);
     }
   }
-
-  window.onload = () => {
-  const eventosDiv = document.getElementById('eventos');
-  const formLogin = document.getElementById('loginForm');
-
-  formLogin.addEventListener('submit', (event) => {
+  // login.js
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('loginForm');
+  loginForm.addEventListener('submit', (event) => {
     event.preventDefault(); // Impede o envio do formulário
-    
-    fetch('//localhost:3000/eventos')
-      .then(response => response.json())
-      .then(eventos => {
-        eventosDiv.innerHTML = '';
+    const username = document.getElementById('nome').value;
+    const password = document.getElementById('senha').value;
 
-        eventos.forEach(evento => {
-          const eventoDiv = document.createElement('div');
-          eventoDiv.classList.add('evento-container');
-
-          const idP = document.createElement('p');
-          idP.textContent = `ID: ${evento._id}`;
-          eventoDiv.appendChild(idP);
-
-          const nomeP = document.createElement('p');
-          nomeP.textContent = `Nome: ${evento.nome}`;
-          eventoDiv.appendChild(nomeP);
-          
-          eventosDiv.appendChild(eventoDiv);
-        });
-      })
-      .catch(error => {
-        console.error('Erro ao listar os eventos:', error);
-      });
+  
+    // Redireciona para a página de eventos
+    window.location.href = 'listaEvento.html';
   });
-};
+})
