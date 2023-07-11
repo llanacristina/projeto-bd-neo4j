@@ -10,10 +10,11 @@
 
 <body>
     <h2>Lista de eventos</h2>
+    <form action = '/' method="POST">
     <input type="text" id="inputNomeUsuario" placeholder="Nome do usuário">
     <input type="text" id="inputNomeEvento" placeholder="Nome do evento">
-    <button type="submit">Participar</button>
-
+    <button type="submit" id="btn-Part">Participar</button>
+    </form>
     <div id="eventos"></div>
 
     <script src="assets/javascript/listaEvento.js"></script>

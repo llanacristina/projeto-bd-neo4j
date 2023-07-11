@@ -7,7 +7,7 @@ const url = process.env.DB_URL;
 const user = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
 
-const driver = neo4j.driver(url,neo4j.auth.basic(user,password));
+const driver = neo4j.driver(url,neo4j.auth.basic('neo4j','neo4j123*'));
 
 driver.verifyAuthentication().then(()=>{
     console.log('Conectado com Neo4j');
@@ -30,7 +30,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/aula')
 
 async function transferirEventosParaNeo4j() {
   try {
-    const driver = neo4j.driver(url, neo4j.auth.basic(user, password));
+    const driver = neo4j.driver(url, neo4j.auth.basic('neo4j','neo4j123*'));
     const session = driver.session();
 
     // Obtenha os eventos cadastrados no MongoDB
@@ -59,7 +59,7 @@ async function transferirEventosParaNeo4j() {
 
 async function transferirUsuarios() {
 try {
-  const driver = neo4j.driver(url, neo4j.auth.basic(user, password));
+  const driver = neo4j.driver(url, neo4j.auth.basic('neo4j','neo4j123*'));
   const session = driver.session();
 
   const usuarios = await Usuario.find().exec(); 
@@ -97,7 +97,7 @@ transferirUsuarios();
 
 async function criarRelacionamento(nomeUsuario, nomeEvento) {
   try {
-    const driver = neo4j.driver(url, neo4j.auth.basic(user, password));
+    const driver = neo4j.driver(url, neo4j.auth.basic('neo4j','neo4j123*'));
     const session = driver.session();
 
     // Consulta no MongoDB para encontrar o usuário pelo nome
@@ -144,11 +144,11 @@ async function criarRelacionamento(nomeUsuario, nomeEvento) {
 }
 
 // Exemplo de uso da função
-const nomeUsuario = 'ana'; // Nome do usuário
-const nomeEvento = 'Lanchar'; // Nome do evento
+const nomeUsuario = 'debora'; // Nome do usuário
+const nomeEvento = 'Estudo'; // Nome do evento
 
 criarRelacionamento(nomeUsuario, nomeEvento);
-
+module.exports = {criarRelacionamento}
 /* 
 async function criarRelacionamento(req,res) {
   const nomeUsuario = req.body.nomeUsuario;

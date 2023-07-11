@@ -196,9 +196,9 @@ body {
 }
 
 .form--heading {
-    font-size: 20px;
+    font-size: 30px;
     height: 70px;
-    color: #4682B4;
+    color: #7db6e3;
     font-family: 'Piazzola';
 }
 
@@ -257,4 +257,13 @@ p {
     color: #aaa;
     font-size: 13px;
     margin-left: 4rem;
+}
+
+#buttonAdm {
+    width: 100%;
+}
+
+#btnLogin {
+    width: 30%;
+    margin-left: 98px;
 }
