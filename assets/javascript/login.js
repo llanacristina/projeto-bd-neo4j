@@ -38,7 +38,7 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
       if (response.ok) {
         const usuario = await response.json();
         console.log(usuario);
-        window.location.href = '/login.html';
+        window.location.href = 'login.html';
       } else {
         console.error('Erro ao cadastrar usuário');
       }

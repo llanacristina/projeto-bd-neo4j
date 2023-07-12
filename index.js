@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const eventosRouter = require('./routes/eventoRouter')
 const usuariosRouter = require('./routes/usuarioRouter')
+const relacionamento = require ('./routes/relacionamentoRouter')
 
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 app.use('/eventos', eventosRouter);
 app.use('/usuarios', usuariosRouter);
+app.use('/relacionamento',relacionamento );
 
 const port = 3000;
 const database = require('./database/mongo.js');

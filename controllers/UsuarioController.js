@@ -30,29 +30,5 @@ const cadastrarUsuario = async (req, res) => {
   }
 };
 
-const listarUsuarios = async (req, res) => {
-    try {
-      const usuarios = await Usuario.find();
-      res.status(200).send(usuarios);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Erro ao listar usuários');
-    }
-  };
 
-  const excluirUsuario = async (req, res) => {
-    const { id } = req.params;
-  
-    try {
-      const usuario = await Usuario.findByIdAndDelete(id);
-      res.status(200).send(`Usuário ${usuario.nome} excluído com sucesso`);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Erro ao excluir usuário');
-    }
-  };
-
-  module.exports = {
-    cadastrarUsuario, fazerLogin,
-    listarUsuarios, excluirUsuario
-  }
+  module.exports = {cadastrarUsuario, fazerLogin}

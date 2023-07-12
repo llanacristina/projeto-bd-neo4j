@@ -149,6 +149,7 @@ const nomeEvento = 'Estudo'; // Nome do evento
 
 criarRelacionamento(nomeUsuario, nomeEvento);
 module.exports = {criarRelacionamento}
+
 /* 
 async function criarRelacionamento(req,res) {
   const nomeUsuario = req.body.nomeUsuario;
