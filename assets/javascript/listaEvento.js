@@ -37,7 +37,6 @@ window.onload = () => {
           })
           .catch(error => {
             console.error('Erro ao criar relacionamento:', error);
-            // Faça aqui o tratamento de erro adequado
           });
         });
 
